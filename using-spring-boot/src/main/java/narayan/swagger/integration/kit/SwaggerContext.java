@@ -23,9 +23,11 @@ public class SwaggerContext {
 	@Bean
 	public Docket swaggerApi(SwaggerProperties swaggerProps) {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.select().apis((RequestHandlerSelectors.basePackage(swaggerProps.getBasePackages())))
-				.build()
-				.apiInfo(apiInfo(swaggerProps));
+				.apiInfo(apiInfo(swaggerProps))
+				.select()
+					.apis((RequestHandlerSelectors.basePackage(swaggerProps.getBasePackages())))
+				.build();
+				
 	}
 
 	private ApiInfo apiInfo(SwaggerProperties swaggerProps) {
