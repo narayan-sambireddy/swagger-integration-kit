@@ -1,7 +1,13 @@
 package narayan.swagger.integration.kit.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import narayan.swagger.integration.kit.domain.Alpha;
 
 /**
  * 
@@ -11,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AlphaController {
 
-	@GetMapping("/hello")
-	public String hello() {
-		return "Hello World";
+	@PostMapping( 
+			value = "/fetchAlpha",
+			produces = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE }, 
+			consumes = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE })
+	public Alpha updateAlpha(@RequestBody Alpha alpha) {
+		return new Alpha();
 	}
 }
