@@ -2,6 +2,8 @@ package narayan.swagger.integration.kit;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -16,6 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author narayan-sambireddy
  *
  */
+@Controller
 @Configuration
 @EnableSwagger2
 public class SwaggerContext {
@@ -39,4 +42,10 @@ public class SwaggerContext {
 	private Contact contact(SwaggerProperties swaggerProps) {
 		return new Contact(swaggerProps.getContactName(), swaggerProps.getContactUrl(), swaggerProps.getContactEmail());
 	}
+	
+	@GetMapping
+	public String showView() {
+		return "redirect:swagger-ui.html";
+	}
+	
 }
